@@ -1,0 +1,47 @@
+const sequelizeController = require("../sequelize_controller");
+
+const getBookingWithSuppliers = async (req, res) => {
+    try {
+        const {bookingId} = req.query;
+
+        if (!bookingId) {
+            return res.status(400).json({ error: "Booking ID is required." });
+        }
+
+        const BookingDetails = sequelizeController.getModel("BookingDetails");
+        const Supplier = sequelizeController.getModel("Supplier");
+        const BookingSupplier = sequelizeController.getModel("BookingSupplier");
+
+        // Fetch the booking details along with suppliers and the associated details
+        const booking = await BookingDetails.findOne({
+            where: { id: bookingId },
+            include: [
+                {
+                    model: Supplier,
+                    through: { 
+                        model: BookingSupplier, 
+                        attributes: ['status', 'arrivalDate', 'leaveDate'], // include status, arrivalDate, and leaveDate from BookingSupplier
+                    },
+                    attributes: [
+                        'id', 'supplierName', 'supplierCode', 'email', 'telephone', 'currency', 'costLocal', // Add fields from Supplier model
+                    ],
+                }
+            ]
+        });
+
+        if (!booking) {
+            return res.status(404).json({ error: `Booking with ID ${bookingId} not found.` });
+        }
+
+        // Return the booking and supplier data
+        res.status(200).json({
+            message: "Booking and suppliers fetched successfully.",
+            data: booking,
+        });
+    } catch (error) {
+        console.error("Error fetching booking with suppliers:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+
+module.exports = { getBookingWithSuppliers };
