@@ -1,8 +1,8 @@
 const dotenv = require("dotenv");
 const { Sequelize } = require("sequelize");
-const BookingDetails = require("./models/Booking"); // Ensure correct relative path
 const Supplier = require("./models/Supplier");
-const BookingSupplier = require("./models/BookingSupplier"); // Junction table
+const AceFeedMasterData = require("./models/Acefeed");
+const PaymentTerms = require("./models/PaymentTerms");
 
 dotenv.config();
 
@@ -35,7 +35,7 @@ class SequelizeController {
         );
 
         this.initializeModels();
-        this.associateModels();
+        // this.associateModels();
     }
 
     async authenticate() {
@@ -53,9 +53,9 @@ class SequelizeController {
     initializeModels() {
         if (Object.keys(this.models).length === 0) {
             console.log("Initializing models...");
-            this.models["BookingDetails"] = BookingDetails(this._sequelize);
             this.models["Supplier"] = Supplier(this._sequelize);
-            this.models["BookingSupplier"] = BookingSupplier(this._sequelize);
+            this.models["AceFeedMasterData"] = AceFeedMasterData(this._sequelize);
+            this.models["PaymentTerms"] = PaymentTerms(this._sequelize);
         }
     }
 

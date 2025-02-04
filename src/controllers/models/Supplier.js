@@ -13,11 +13,11 @@ const Supplier = (sequelize) => {
         },
         address: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         contactPerson: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         telephone: {
             type: DataTypes.STRING,

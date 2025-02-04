@@ -1,0 +1,21 @@
+{
+    "supplierCode": "EZY001",
+      "terms": [
+        {
+          "term_type": "Deposit",
+          "term_days": 30,
+          "payment_basis": "Per Booking",
+          "payment_time": "Before",
+          "payment_trigger": "Check In",
+          "percentage": 20
+        },
+        {
+          "term_type": "Final",
+          "term_days": 30,
+          "payment_basis": "Per Booking",
+          "payment_time": "After",
+          "payment_trigger": "Check In",
+          "percentage": 80
+        }
+      ]
+}

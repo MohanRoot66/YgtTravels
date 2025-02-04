@@ -5,6 +5,8 @@ const sequelizeController = require('./controllers/sequelize_controller');
 const { supplierRoutes } = require('./routes/supplier_routes');
 const { addSuppliertoBookingRoute } = require('./routes/booking_supplier');
 const { getBookingWithSuppliers } = require('./controllers/core/get_deatils');
+const saveBookingWithSuppliers = require('./controllers/core/saveace_feed');
+const SupplierPaymentTerms = require('./controllers/core/addTerms_controller');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -23,7 +25,9 @@ app.get('/health', (req, res) => {
 
 app.use("/api", supplierRoutes);
 app.use("/api",addSuppliertoBookingRoute);
-app.get("/yoo",getBookingWithSuppliers);
+app.get("/api/acefeed",getBookingWithSuppliers);
+app.post("/api/savefeed",saveBookingWithSuppliers);
+app.post("/api/addTerms",SupplierPaymentTerms);
 
 async function main() {
     try {
