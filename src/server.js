@@ -7,6 +7,9 @@ const { addSuppliertoBookingRoute } = require('./routes/booking_supplier');
 const { getBookingWithSuppliers } = require('./controllers/core/get_deatils');
 const saveBookingWithSuppliers = require('./controllers/core/saveace_feed');
 const SupplierPaymentTerms = require('./controllers/core/addTerms_controller');
+const { PaymentRulesData } = require('./controllers/core/addPaymentRules');
+const savePaymentSchedularData = require('./controllers/core/insertPaymentSchedule');
+
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -28,6 +31,8 @@ app.use("/api",addSuppliertoBookingRoute);
 app.get("/api/acefeed",getBookingWithSuppliers);
 app.post("/api/savefeed",saveBookingWithSuppliers);
 app.post("/api/addTerms",SupplierPaymentTerms);
+app.post("/api/addRules",PaymentRulesData);
+app.post("/api/generatePayment", savePaymentSchedularData);
 
 async function main() {
     try {

@@ -3,6 +3,9 @@ const { Sequelize } = require("sequelize");
 const Supplier = require("./models/Supplier");
 const AceFeedMasterData = require("./models/Acefeed");
 const PaymentTerms = require("./models/PaymentTerms");
+const PaymentRules = require("./models/PaymentRules");
+const PaymentSchedular = require("./models/PaymentSchedular");
+
 
 dotenv.config();
 
@@ -35,7 +38,7 @@ class SequelizeController {
         );
 
         this.initializeModels();
-        // this.associateModels();
+    
     }
 
     async authenticate() {
@@ -56,17 +59,9 @@ class SequelizeController {
             this.models["Supplier"] = Supplier(this._sequelize);
             this.models["AceFeedMasterData"] = AceFeedMasterData(this._sequelize);
             this.models["PaymentTerms"] = PaymentTerms(this._sequelize);
+            this.models["PaymentRules"] = PaymentRules(this._sequelize);
+            this.models["PaymentSchedular"] = PaymentSchedular(this._sequelize);
         }
-    }
-
-    associateModels() {
-        console.log("Associating models...");
-
-        const { BookingDetails, Supplier, BookingSupplier } = this.models;
-
-        // Many-to-Many Relationship
-        BookingDetails.belongsToMany(Supplier, { through: BookingSupplier, foreignKey: "bookingId" });
-        Supplier.belongsToMany(BookingDetails, { through: BookingSupplier, foreignKey: "supplierId" });
     }
 
     getModel(name) {

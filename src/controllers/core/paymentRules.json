@@ -1,0 +1,15 @@
+{
+    "supplier_code": "EZY001",
+    "bsp_cost": true,
+    "invoice_needed": true,
+    "recalculate_expected_supplier_payments": false,
+    "shared_cost": false,
+    "map_to_finance_account": false,
+    "acceptable_finance_suppliers": "N/A",
+    "accept_multiple_suppliers": true,
+    "acceptable_supplier_list": ["EZY001", "West Cliffs Golf Course", "PDR001", "Praia Del Rey Golf Course"],
+    "try_to_match": true,
+    "fully_match_source_invoice": false,
+    "supplier_payment_tolerance": 5
+  }
+  

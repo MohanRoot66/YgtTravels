@@ -11,22 +11,11 @@
                 "supplierCode": "EZY001",
                 "details": {
                     "status": null,
-                    "arrivalDate": null,
-                    "leaveDate": null,
+                    "arrivalDate": "2025-04-01T00:00:00.000Z",
+                    "leaveDate": "2025-04-04T00:00:00.000Z",
                     "Currency" : "EUR",
                     "ExchangeRate":1,
-                    "TotalCost":2
-                }
-            },
-            {
-                "supplierCode": "TRA001",
-                "details": {
-                    "status": null,
-                    "arrivalDate": null,
-                    "leaveDate": null,
-                    "Currency" : "EUR",
-                    "ExchangeRate":1,
-                    "TotalCost":2
+                    "TotalCost":8000
                 }
             }
         ]
