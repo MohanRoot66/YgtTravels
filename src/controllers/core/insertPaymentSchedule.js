@@ -1,8 +1,7 @@
 const moment = require("moment");
 const sequelizeController = require("../sequelize_controller");
 const aceFeed = require("./aceFeed.json");
-const paymentRules = require("./addTerms.json");  // Assuming you have a JSON file with data
-
+const paymentRules = require("./addTerms.json"); // Assuming you have a JSON file with data
 
 // Insert PaymentSchedular data
 const insertPaymentSchedular = async (feed, terms) => {
@@ -24,7 +23,8 @@ const insertPaymentSchedular = async (feed, terms) => {
           payment_basis,
           payment_time,
           payment_trigger,
-          percentage,
+          amount, // Optional amount
+          percentage, // Optional percentage
         } = term;
 
         // Determine the trigger date (Check In is assumed to be the departureDate)
@@ -36,8 +36,8 @@ const insertPaymentSchedular = async (feed, terms) => {
             ? triggerDate.subtract(term_days, "days")
             : triggerDate.add(term_days, "days");
 
-        // Calculate the amount based on the percentage and TotalCost
-        const amount = (percentage / 100) * TotalCost;
+        // Determine the amount to use: prefer `amount` if provided, otherwise calculate from `percentage`
+        const calculatedAmount = amount ?? (percentage ? (percentage / 100) * TotalCost : 0);
 
         // Create a new record in the PaymentSchedular table
         await PaymentSchedular.create({
@@ -54,12 +54,12 @@ const insertPaymentSchedular = async (feed, terms) => {
           description: term_type,
           leadPassenger: leadPax,
           currency: Currency,
-          amount,
+          amount: calculatedAmount, // Use calculated amount
         });
       }
     }
 
-    console.log("Payment terms successfully inserted into PaymentSchedular table.");
+    console.log("Data inserted into PaymentSchedular table.");
   } catch (error) {
     console.error("Error inserting payment terms:", error);
   }
@@ -79,4 +79,4 @@ const savePaymentSchedularData = async (req, res) => {
   }
 };
 
-module.exports = savePaymentSchedularData ;
+module.exports = savePaymentSchedularData;

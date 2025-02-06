@@ -13,7 +13,7 @@ const savePaymentSchedularData = require('./controllers/core/insertPaymentSchedu
 
 const app = express();
 const port = process.env.PORT || 3000;
-const url = process.env.URL || 'http://localhost'; // Ensure URL fallback is set
+const url = process.env.URL || 'http://172.21.32.29'; // Ensure URL fallback is set
 
 // Enable CORS for requests
 app.use(cors());
