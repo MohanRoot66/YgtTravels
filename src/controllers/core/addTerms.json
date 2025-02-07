@@ -3,11 +3,19 @@
       "terms": [
         {
           "term_type": "Deposit",
-          "term_days": 15,
+          "term_days": 30,
           "payment_basis": "Per Booking",
           "payment_time": "Before",
           "payment_trigger": "Check In",
           "percentage": 7
+        },
+        {
+          "term_type": "Stage 1",
+          "term_days": 15,
+          "payment_basis": "Per Booking",
+          "payment_time": "Before",
+          "payment_trigger": "Check In",
+          "percentage": 10
         },
         {
           "term_type": "Final",
@@ -15,7 +23,7 @@
           "payment_basis": "Per Booking",
           "payment_time": "After",
           "payment_trigger": "Check In",
-          "percentage": 93
+          "percentage": 83
         }
       ]
 }
