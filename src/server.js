@@ -9,11 +9,12 @@ const saveBookingWithSuppliers = require('./controllers/core/saveace_feed');
 const SupplierPaymentTerms = require('./controllers/core/addTerms_controller');
 const { PaymentRulesData } = require('./controllers/core/addPaymentRules');
 const savePaymentSchedularData = require('./controllers/core/insertPaymentSchedule');
+const GetAceFeed = require('./controllers/core/getaceFeed');
 
 
 const app = express();
 const port = process.env.PORT || 3000;
-const url = process.env.URL || 'http://172.21.32.29'; // Ensure URL fallback is set
+const url = process.env.URL || 'http://localhost'; // Ensure URL fallback is set
 
 // Enable CORS for requests
 app.use(cors());
@@ -33,6 +34,7 @@ app.post("/api/savefeed",saveBookingWithSuppliers);
 app.post("/api/addTerms",SupplierPaymentTerms);
 app.post("/api/addRules",PaymentRulesData);
 app.post("/api/generatePayment", savePaymentSchedularData);
+app.get("/api/getaceFeed",GetAceFeed);
 
 async function main() {
     try {
