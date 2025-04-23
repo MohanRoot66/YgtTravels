@@ -21,6 +21,7 @@
     "moment": "^2.30.1",
     "pg": "^8.13.0",
     "sequelize": "^6.37.3",
-    "uuid": "^10.0.0"
+    "uuid": "^10.0.0",
+    "ygttravels": "file:"
   }
 }
